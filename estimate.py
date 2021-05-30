@@ -1,5 +1,23 @@
 import math
 import unittest
+import random
+from math import sqrt
+
+def monte_carlo(n):
+    ins = 0
+    for i in range(n):
+        x = random.random()
+        y = random.random()
+        distfc = sqrt(pow((x-0.5),2) + pow((y-0.5),2))
+        if distfc <= 0.5:
+            ins += 1
+    return (4*ins/n)
+
+def wallis(n):
+    est_halfpi = 1
+    for i in range(1,n+1):
+        est_halfpi *= (4*pow(i,2)/(4*pow(i,2)-1))
+    return 2*est_halfpi
 
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
